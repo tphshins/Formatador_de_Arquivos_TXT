@@ -23,8 +23,8 @@ def processar_arquivo(arquivo_path):
             partes = linha.split(' - ')
             data_hora = partes[0]
             mensagem = ' - '.join(partes[1:])
-            # Adicionar espaço após o ponto final
-            nova_linha = f"{data_hora} - {mensagem.strip().replace('.', '. ')}\n"
+            # Adicionar duas linhas e um traço para separar as mensagens e as datas, agora sim!!!
+            nova_linha = f"{data_hora}\n\n- {mensagem.strip().replace('.', '. ')}\n\n{'_'*30}\n\n"
             novo_conteudo += nova_linha
 
     # Abrir a caixa de diálogo para salvar o novo arquivo TXT
