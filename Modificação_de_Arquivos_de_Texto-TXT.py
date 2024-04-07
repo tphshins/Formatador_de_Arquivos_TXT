@@ -17,12 +17,15 @@ def processar_arquivo(arquivo_path):
 
     novo_conteudo = ""
     for linha in linhas:
-        # Separar cada final de frase e adicionar espaço entre as datas
-        partes = linha.split(' - ')
-        data_hora = partes[0]
-        mensagem = ' - '.join(partes[1:])
-        nova_linha = f"{data_hora} - {mensagem.strip()}\n"
-        novo_conteudo += nova_linha
+        # Verifica se a linha não está em branco
+        if linha.strip():
+            # Separar cada final de frase e adicionar espaço entre as datas
+            partes = linha.split(' - ')
+            data_hora = partes[0]
+            mensagem = ' - '.join(partes[1:])
+            # Adicionar espaço após o ponto final
+            nova_linha = f"{data_hora} - {mensagem.strip().replace('.', '. ')}\n"
+            novo_conteudo += nova_linha
 
     # Abrir a caixa de diálogo para salvar o novo arquivo TXT
     root = tk.Tk()
