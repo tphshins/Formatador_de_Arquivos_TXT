@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import filedialog
+import sys
 
 # Função para abrir a caixa de diálogo e selecionar o arquivo TXT
 def abrir_arquivo():
@@ -11,7 +12,7 @@ def abrir_arquivo():
 
 # Função para processar o arquivo e realizar as modificações
 def processar_arquivo(arquivo_path):
-    with open(arquivo_path, 'r') as arquivo:
+    with open(arquivo_path, 'r', encoding='utf-8') as arquivo:
         linhas = arquivo.readlines()
 
     novo_conteudo = ""
@@ -28,8 +29,11 @@ def processar_arquivo(arquivo_path):
     root.withdraw()
     novo_arquivo_path = filedialog.asksaveasfilename(title="Salvar arquivo TXT modificado", defaultextension=".txt", filetypes=[("Arquivos de texto", "*.txt")])
     if novo_arquivo_path:
-        with open(novo_arquivo_path, 'w') as novo_arquivo:
+        with open(novo_arquivo_path, 'w', encoding='utf-8') as novo_arquivo:
             novo_arquivo.write(novo_conteudo)
 
-# Chamar a função para abrir o arquivo TXT
-abrir_arquivo()
+# Verificar se o código está sendo executado diretamente
+if __name__ == "__main__":
+    abrir_arquivo()
+    # Encerrar o aplicativo após a execução
+    sys.exit(0)
